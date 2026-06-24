@@ -125,51 +125,266 @@
         .matrix-wrapper {
             background: #fff;
             border: 1px solid #d5e4f0;
-            border-radius: 8px;
-            padding: 20px 16px;
-            margin-top: 24px;
+            border-radius: 12px;
+            padding: 16px 12px;
+            margin-top: 0;
             overflow-x: auto;
         }
-        .matrix-wrapper h3 { text-align: center; color: #3a7cc3; margin-bottom: 10px; font-size: 1rem; }
-        .matrix-table { border-collapse: collapse; margin: 0 auto; }
+        .matrix-wrapper h3 {
+            text-align: center;
+            color: #3a7cc3;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .matrix-table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            font-size: 0.75rem;
+            width: 100%;
+            table-layout: fixed;
+        }
+        .matrix-table td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 4px 2px;
+            border: none;
+        }
+        .q-num {
+            font-weight: 600;
+            font-size: 0.7rem;
+            color: #1a1a1a;
+            text-align: center;
+            width: 28px;
+            padding-right: 4px;
+        }
         .matrix-cell {
-            width: 32px; height: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border: 1.5px solid #bbb;
+            border-radius: 4px;
+            margin: 1px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            background-color: #fff;
+            cursor: pointer;
+            transition: 0.1s;
+            box-sizing: border-box;
+        }
+        .matrix-cell:hover {
+            border-color: #5b9bd5;
+            background-color: #eef4f9;
+        }
+        .matrix-cell.filled {
+            background-color: #c8cdd4;
+            border-color: #999;
+        }
+        .matrix-cell.correct-glow {
+            background-color: #4caf84 !important;
+            border-color: #3a8d65 !important;
+            color: white;
+        }
+        .matrix-cell.incorrect-glow {
+            background-color: #e05555 !important;
+            border-color: #c44040 !important;
+            color: white;
+        }
+        @media (max-width: 700px) {
+            .matrix-cell {
+                width: 24px;
+                height: 24px;
+                font-size: 0.65rem;
+            }
+            .q-num {
+                font-size: 0.65rem;
+                width: 22px;
+            }
+        }
+        .matrix-two-columns {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+        }
+        .matrix-col {
+            flex: 1;
+        }
+        .matrix-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .matrix-qnum {
+            font-weight: 600;
+            font-size: 0.75rem;
+            width: 28px;
+            text-align: right;
+        }
+        .matrix-options {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .variant-sidebar .matrix-cell {
+            width: 28px;
+            height: 28px;
             border: 1.5px solid #bbb;
             border-radius: 4px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 0.75rem;
-            background: #fff;
-            margin: 2px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            background-color: #fff;
+            transition: 0.1s;
         }
-        .matrix-cell.filled { background: #c8cdd4; }
-        .matrix-cell.correct-glow { background: #4caf84 !important; color: white; }
-        .matrix-cell.incorrect-glow { background: #e05555 !important; color: white; }
-
-        .submit-area { text-align: center; margin-top: 20px; }
-        .submit-main-btn {
+        .variant-sidebar .matrix-cell:hover {
+            border-color: #5b9bd5;
+            background-color: #eef4f9;
+        }
+        .variant-sidebar .matrix-cell.filled {
+            background-color: #c8cdd4;
+            border-color: #999;
+        }
+        .variant-sidebar .matrix-cell.correct-glow {
+            background-color: #4caf84 !important;
+            border-color: #3a8d65 !important;
+            color: white;
+        }
+        .variant-sidebar .matrix-cell.incorrect-glow {
+            background-color: #e05555 !important;
+            border-color: #c44040 !important;
+            color: white;
+        }
+        @media (max-width: 800px) {
+            .matrix-two-columns {
+                flex-direction: column;
+            }
+        }
+        .variant-layout {
+            display: flex;
+            gap: 30px;
+            position: relative;
+        }
+        .variant-content {
+            flex: 1;
+            min-width: 0;
+        }
+        .variant-sidebar {
+            width: 380px;
+            position: sticky;
+            top: 100px;
+            align-self: flex-start;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            background: #fff;
+            border: 1px solid #d5e4f0;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .variant-sidebar h3 {
+            text-align: center;
+            margin-bottom: 12px;
+            color: #3a7cc3;
+        }
+        .question-group {
+            background: #fff;
+            border: 1px solid #d5e4f0;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        .group-header {
+            background: #e8f2fa;
+            padding: 12px 16px;
+            font-weight: 600;
+            border-bottom: 1px solid #d5e4f0;
+        }
+        .group-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 12px 16px;
+            background: #f9fbfd;
+            border-bottom: 1px solid #eef2f5;
+        }
+        .group-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+        }
+        .group-items {
+            padding: 8px 0;
+        }
+        .group-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eef2f5;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .group-item:last-child {
+            border-bottom: none;
+        }
+        .item-text {
+            flex: 1;
+            font-size: 0.95rem;
+        }
+        .item-answers {
+            display: flex;
+            gap: 12px;
+            background: #fafafa;
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+        .item-answer {
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 16px;
+            background: #fff;
+            border: 1px solid #ccc;
+            font-size: 0.85rem;
+            transition: 0.1s;
+        }
+        .item-answer.selected {
             background: #5b9bd5;
             color: white;
-            border: none;
-            padding: 10px 28px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: 'Times New Roman', Times, serif;
+            border-color: #3a7cc3;
         }
-        .warning-msg { color: #d44; font-weight: 600; margin-top: 8px; display: none; }
-        .warning-msg.show { display: block; }
-        .result-block { margin-top: 16px; padding: 12px; border-radius: 8px; display: none; text-align: center; font-weight: 600; }
-        .result-block.show { display: block; }
-        .recommendation { margin-top: 12px; padding: 12px; background: #fff; border: 1px solid #d5e4f0; border-radius: 8px; display: none; }
-        .recommendation.show { display: block; }
-        .recommendation a { color: #3a7cc3; font-weight: 600; cursor: pointer; text-decoration: underline; }
-        @media (max-width: 700px) {
-            .question-block { flex-direction: column; gap: 12px; }
-            .q-options { width: 100%; }
+        .item-answer.correct-highlight {
+            background: #4caf84;
+            color: white;
+            border-color: #3a8d65;
+        }
+        .item-answer.incorrect-highlight {
+            background: #e05555;
+            color: white;
+            border-color: #c44040;
+        }
+        @media (max-width: 800px) {
+            .variant-layout { flex-direction: column; }
+            .variant-sidebar { position: static; width: 100%; max-height: none; margin-top: 20px; }
+        }
+        .container h2 {
+            color: #3a7cc3;
+        }
+        .rec-link {
+            cursor: pointer;
+            color: #3a7cc3;
+            text-decoration: underline;
+            margin-right: 8px;
+            font-weight: 500;
+        }
+        .recommendation {
+            margin-top: 12px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -210,8 +425,7 @@
         { text: '23. Позвольте ... вам нашего гостя.', options: ['А) знакомить', 'Б) представлять'], correct: 1, category: 'Синонимы и паронимы' },
         { text: '24. Ты ... вчера футбольный матч?', options: ['А) смотреть', 'Б) видеть', 'В) глядеть'], correct: 0, category: 'Синонимы и паронимы' },
         { text: '25. Я плохо ... без очков.', options: ['А) смотреть', 'Б) видеть', 'В) глядеть'], correct: 1, category: 'Синонимы и паронимы' },
-        // Часть 2 (26-77) – сокращённо для экономии места, но в реальном коде они должны быть все. 
-        // Для демонстрации работоспособности добавлю ещё несколько, но полный вариант вы уже получили ранее.
+        // Часть 2 (26-77)
         { text: '26. Мы вышли из ... , когда начался дождь.', options: ['А) музея', 'Б) музее', 'В) музею'], correct: 0, category: 'Падежные формы' },
         { text: '27. В этом ... интересная выставка.', options: ['А) музея', 'Б) музее', 'В) музею'], correct: 1, category: 'Падежные формы' },
         { text: '28. Экскурсовод подошёл к ... и начал рассказ.', options: ['А) музея', 'Б) музее', 'В) музею'], correct: 2, category: 'Падежные формы' },
@@ -357,13 +571,43 @@
         { text: '164. ... он поёт, я всегда заслушиваюсь.', options: ['А) когда', 'Б) пока', 'В) если'], correct: 0, category: 'Сложные предложения' },
         { text: '165. Подожди здесь, ... я вернусь.', options: ['А) когда', 'Б) пока', 'В) если'], correct: 1, category: 'Сложные предложения' }
     ];
-        // ... (остальные задания до 165 я добавлю в финальном коде, но здесь для краткости покажу структуру)
-    // Дополним вариант 1 до 165 элементов (здесь в ответе я приведу полный массив, но чтобы не раздувать, отмечу, что в реальном коде он полностью соответствует вашему файлу)
 
-    // Для краткости в этом ответе я покажу, что массив должен быть полным. 
-    // Ниже приведу лишь функцию рендеринга, а вы уже используйте тот массив, который я дал ранее (со всеми 165).
+    let variantBlocks = null;
 
-    // ---------- ТЕМАТИЧЕСКИЕ ЗАДАНИЯ (примеры) ----------
+    function groupQuestionsIntoBlocks(questions) {
+        const blocks = [];
+        let currentBlock = null;
+        for (let i = 0; i < questions.length; i++) {
+            const q = questions[i];
+            const optionsKey = JSON.stringify(q.options);
+            if (!currentBlock || currentBlock.optionsKey !== optionsKey) {
+                if (currentBlock) blocks.push(currentBlock);
+                currentBlock = {
+                    optionsKey: optionsKey,
+                    options: [...q.options],
+                    items: []
+                };
+            }
+            currentBlock.items.push({
+                id: i,
+                text: q.text,
+                correct: q.correct,
+                category: q.category
+            });
+        }
+        if (currentBlock) blocks.push(currentBlock);
+        return blocks;
+    }
+
+    function getVariantBlocks(variantNum) {
+        if (!variantBlocks) {
+            const flat = variantData[variantNum];
+            if (flat) variantBlocks = groupQuestionsIntoBlocks(flat);
+        }
+        return variantBlocks;
+    }
+
+    // ---------- ТЕМАТИЧЕСКИЕ ЗАДАНИЯ ----------
     const topicQuestions = {};
     topicQuestions['падежные-формы'] = [
         { text: 'Я живу в ... .', options: ['А) Москва', 'Б) Москву', 'В) Москве'], correct: 2 },
@@ -398,7 +642,6 @@
         { text: 'Я хочу стать ... .', options: ['А) инженер', 'Б) инженеру', 'В) инженером'], correct: 2 }
     ];
 
-    // 2. Предлоги родительного падежа (20 вопросов)
     topicQuestions['предлоги-родительного-падежа'] = [
         { text: 'Я пью кофе ... сахара.', options: ['А) с', 'Б) из', 'В) без'], correct: 2 },
         { text: 'Я приехал ... Москвы.', options: ['А) с', 'Б) от', 'В) из'], correct: 2 },
@@ -422,7 +665,6 @@
         { text: 'Студент спустился ... лестницы.', options: ['А) с', 'Б) из', 'В) от'], correct: 0 }
     ];
 
-    // 3. Предлоги дательного падежа
     topicQuestions['предлоги-дательного-падежа'] = [
         { text: 'Мы идём ... врачу.', options: ['А) в', 'Б) на', 'В) к'], correct: 2 },
         { text: 'Подойдите ... доске.', options: ['А) в', 'Б) к', 'В) на'], correct: 1 },
@@ -436,7 +678,6 @@
         { text: 'Студент подошёл ... преподавателю.', options: ['А) в', 'Б) с', 'В) к'], correct: 2 }
     ];
 
-    // 4. Предлоги винительного падежа
     topicQuestions['предлоги-винительного-падежа'] = [
         { text: 'Мы перешли ... улицу.', options: ['А) по', 'Б) через', 'В) в'], correct: 1 },
         { text: 'Я заплатил ... проезд.', options: ['А) на', 'Б) о', 'В) за'], correct: 2 },
@@ -450,7 +691,6 @@
         { text: 'Мяч улетел ... забор.', options: ['А) под', 'Б) над', 'В) за'], correct: 2 }
     ];
 
-    // 5. Предлоги творительного падежа
     topicQuestions['предлоги-творительного-падежа'] = [
         { text: 'Ключ лежит ... ковриком.', options: ['А) над', 'Б) под', 'В) на'], correct: 1 },
         { text: '... сном я читаю книгу.', options: ['А) После', 'Б) До', 'В) Перед'], correct: 2 },
@@ -464,7 +704,6 @@
         { text: 'Кот спит ... диваном.', options: ['А) над', 'Б) на', 'В) под'], correct: 2 }
     ];
 
-    // 6. Предлоги предложного падежа
     topicQuestions['предлоги-предложного-падежа'] = [
         { text: 'Мы говорили ... погоде.', options: ['А) на', 'Б) в', 'В) о'], correct: 2 },
         { text: 'Мы живём ... большом городе.', options: ['А) на', 'Б) в', 'В) за'], correct: 1 },
@@ -478,7 +717,6 @@
         { text: 'Она спросила ... моих планах.', options: ['А) на', 'Б) в', 'В) о'], correct: 2 }
     ];
 
-    // 7. Глаголы движения (20 вопросов)
     topicQuestions['глаголы-движения'] = [
         { text: 'Каждый день я ... в университет пешком.', options: ['А) иду', 'Б) пойду', 'В) хожу'], correct: 2 },
         { text: 'Смотри, Анна ... через дорогу.', options: ['А) идёт', 'Б) ходит', 'В) шла'], correct: 0 },
@@ -492,7 +730,6 @@
         { text: 'Мы ... из дома в 8 утра.', options: ['А) ушли', 'Б) вышли', 'В) пришли'], correct: 1 }
     ];
 
-    // 8. Причастия
     topicQuestions['причастия'] = [
         { text: 'Студент, ... статью, не заметил, как прошло время.', options: ['А) читаемый', 'Б) читающий', 'В) читавший'], correct: 1 },
         { text: 'Книга, ... известным писателем, стала бестселлером.', options: ['А) написавшая', 'Б) пишущая', 'В) написанная'], correct: 2 },
@@ -504,7 +741,6 @@
         { text: 'Человек, ... рядом со мной, мой коллега.', options: ['А) сидевший', 'Б) сидящий', 'В) севший'], correct: 1 }
     ];
 
-    // 9. Деепричастия
     topicQuestions['деепричастия'] = [
         { text: '... книгу, он уснул.', options: ['А) Прочитав', 'Б) Читая', 'В) Прочитаемый'], correct: 1 },
         { text: '... работу, они пошли домой.', options: ['А) Заканчивая', 'Б) Закончив', 'В) Законченный'], correct: 1 },
@@ -514,7 +750,6 @@
         { text: '... книгу в библиотеку, он пошёл в аудиторию.', options: ['А) Сдавая', 'Б) Сданный', 'В) Сдав'], correct: 2 }
     ];
 
-    // 10. Сложные предложения и союзы
     topicQuestions['сложные-предложения-и-союзы'] = [
         { text: 'Я знаю, ... ты придёшь завтра.', options: ['А) чтобы', 'Б) если', 'В) что'], correct: 2 },
         { text: 'Он пришёл, ... рассказать новость.', options: ['А) что', 'Б) чтобы', 'В) потому что'], correct: 1 },
@@ -525,7 +760,6 @@
         { text: 'Я позвоню тебе, ... освобожусь.', options: ['А) если', 'Б) пока', 'В) когда'], correct: 2 }
     ];
 
-    // 11. Императив
     topicQuestions['императив'] = [
         { text: '..., пожалуйста, это письмо!', options: ['А) Прочитаешь', 'Б) Прочитал', 'В) Прочитай'], correct: 2 },
         { text: '... мне, пожалуйста, этот словарь на неделю.', options: ['А) Дадите', 'Б) Дайте', 'В) Дадут'], correct: 1 },
@@ -535,7 +769,6 @@
         { text: '..., какую интересную книгу я купил!', options: ['А) Посмотришь', 'Б) Посмотри', 'В) Посмотрел'], correct: 1 }
     ];
 
-    // 12. Синонимы и паронимы
     topicQuestions['синонимы-и-паронимы'] = [
         { text: 'Я люблю ... телевизор по вечерам.', options: ['А) видеть', 'Б) глядеть', 'В) смотреть'], correct: 2 },
         { text: 'Бабушка плохо ..., ей нужны очки.', options: ['А) смотрит', 'Б) видит', 'В) глядит'], correct: 1 },
@@ -545,7 +778,6 @@
         { text: 'Ты уже ... счёт за интернет?', options: ['А) заплатил', 'Б) оплатил', 'В) купил'], correct: 1 }
     ];
 
-    // 13. Лексическая сочетаемость
     topicQuestions['лексическая-сочетаемость'] = [
         { text: 'Я должен ... решение до вечера.', options: ['А) сделать', 'Б) взять', 'В) принять'], correct: 2 },
         { text: 'Я ... ошибку в вычислениях.', options: ['А) нашёл', 'Б) допустил', 'В) принял'], correct: 1 },
@@ -555,7 +787,6 @@
         { text: 'Эта проблема очень ... .', options: ['А) сильная', 'Б) крепкая', 'В) серьёзная'], correct: 2 }
     ];
 
-    // 14. Семья и дом
     topicQuestions['семья-и-дом'] = [
         { text: 'Мать моей мамы --- моя ... .', options: ['А) тётя', 'Б) бабушка', 'В) сестра'], correct: 1 },
         { text: 'Брат моего отца --- мой ... .', options: ['А) дедушка', 'Б) племянник', 'В) дядя'], correct: 2 },
@@ -564,7 +795,6 @@
         { text: 'Муж моей сестры --- мой ... .', options: ['А) шурин', 'Б) свёкор', 'В) зять'], correct: 2 }
     ];
 
-    // 15. Учёба и работа
     topicQuestions['учёба-и-работа'] = [
         { text: 'Моя сестра ... на врача.', options: ['А) изучает', 'Б) работает', 'В) учится'], correct: 2 },
         { text: 'Он ... русский язык в университете.', options: ['А) учится', 'Б) занимается', 'В) изучает'], correct: 2 },
@@ -573,7 +803,6 @@
         { text: 'Занятия ... в 9 утра.', options: ['А) заканчиваются', 'Б) начинаются', 'В) продолжаются'], correct: 1 }
     ];
 
-    // 16. Погода
     topicQuestions['погода'] = [
         { text: 'Занятия начнутся ... .', options: ['А) понедельник', 'Б) с понедельника', 'В) в понедельник'], correct: 2 },
         { text: 'Мы поедем на море ... .', options: ['А) август', 'Б) августа', 'В) в августе'], correct: 2 },
@@ -582,9 +811,9 @@
         { text: 'Он придёт ... минут.', options: ['А) после 30', 'Б) за 30', 'В) через 30'], correct: 2 }
     ];
 
-    // Категория -> слаг для рекомендаций
     const categoryToTopic = {
         'Синонимы и паронимы': 'синонимы-и-паронимы',
+        'Сложные предложения': 'сложные-предложения-и-союзы',
         'Сложные предложения и союзы': 'сложные-предложения-и-союзы',
         'Предлоги предложного падежа': 'предлоги-предложного-падежа',
         'Глаголы движения': 'глаголы-движения',
@@ -620,8 +849,8 @@
         'учёба-и-работа': 'Учёба и работа',
         'погода': 'Погода',
     };
-        const grammarTopics = Object.keys(topicDisplayNames).filter(k => !['синонимы-и-паронимы','лексическая-сочетаемость','семья-и-дом','учёба-и-работа','погода'].includes(k));
-        const lexicalTopics = ['синонимы-и-паронимы','лексическая-сочетаемость','семья-и-дом','учёба-и-работа','погода'];
+    const grammarTopics = Object.keys(topicDisplayNames).filter(k => !['синонимы-и-паронимы','лексическая-сочетаемость','семья-и-дом','учёба-и-работа','погода'].includes(k));
+    const lexicalTopics = ['синонимы-и-паронимы','лексическая-сочетаемость','семья-и-дом','учёба-и-работа','погода'];
 
     // ---------- ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ----------
     let currentPage = 'home';
@@ -652,74 +881,106 @@
     }
 
     function renderVariant() {
-    if (!currentVariant || !variantData[currentVariant]) return;
-    const questions = variantData[currentVariant];
-    let html = `<h2 style="color:#2c5f8a">Вариант ${currentVariant}</h2>`;
-    
-    // Блоки вопросов (вертикальные ответы)
-    questions.forEach((q, idx) => {
-        html += `
-            <div class="question-block" id="vq-${idx}">
-                <div class="q-text">${q.text}</div>
-                <div class="q-options" id="vopts-${idx}">
-                    ${q.options.map((opt, oi) => {
-                        const letter = String.fromCharCode(1040 + oi);
-                        return `<div class="opt-row">
-                                    <span class="opt-square" data-q="${idx}" data-opt="${oi}" onclick="selectVariantAnswer(${idx}, ${oi})">${letter}</span>
-                                    <span class="opt-text">${opt.substring(2)}</span>
-                                </div>`;
-                    }).join('')}
-                </div>
-            </div>
-        `;
-    });
+        if (!currentVariant || !variantData[currentVariant]) return;
+        const blocks = getVariantBlocks(currentVariant);
+        if (!blocks) return;
 
-    // Аккуратная матрица 5 колонок
-    html += `<div class="matrix-wrapper"><h3>Матрица ответов</h3><table class="matrix-table"><tbody>`;
-    const cols = 5;
-    for (let i = 0; i < questions.length; i += cols) {
-        html += '<tr>';
-        for (let j = 0; j < cols; j++) {
-            const idx = i + j;
-            if (idx < questions.length) {
-                html += `<td class="q-num">${idx+1}</td>`;
-                html += '<td>';
-                for (let k = 0; k < questions[idx].options.length; k++) {
-                    const letter = String.fromCharCode(1040 + k);
-                    html += `<span class="matrix-cell" data-q="${idx}" data-opt="${k}" onclick="selectMatrix(${idx}, ${k})">${letter}</span>`;
-                }
-                html += '</td>';
-            } else {
-                html += '<td></td><td></td>'; // пустые ячейки для неполного ряда
+        let html = `<h2 style="color:#2c5f8a; margin-bottom:16px;">Вариант ${currentVariant}</h2>`;
+        html += `<div class="variant-layout">`;
+        html += `<div class="variant-content">`;
+
+        blocks.forEach((block, blockIdx) => {
+            html += `<div class="question-group" data-block="${blockIdx}">`;
+            html += `<div class="group-header">Варианты ответов:</div>`;
+            html += `<div class="group-options">`;
+            block.options.forEach((opt, oi) => {
+                const letter = String.fromCharCode(1040 + oi);
+                html += `<div class="group-option">
+                            <span class="opt-square" style="cursor:default; background:#eef;">${letter}</span>
+                            <span class="opt-text">${opt.substring(2)}</span>
+                        </div>`;
+            });
+            html += `</div><div class="group-items">`;
+            block.items.forEach((item) => {
+                const qid = item.id;
+                const selected = variantAnswers[qid] !== undefined ? variantAnswers[qid] : null;
+                html += `<div class="group-item" id="vq-${qid}">
+                            <div class="item-text">${item.text}</div>
+                            <div class="item-answers" data-qid="${qid}">`;
+                block.options.forEach((opt, oi) => {
+                    const letter = String.fromCharCode(1040 + oi);
+                    const isSelected = (selected === oi);
+                    html += `<span class="item-answer ${isSelected ? 'selected' : ''}" data-qid="${qid}" data-opt="${oi}" onclick="selectVariantAnswer(${qid}, ${oi})">${letter}</span>`;
+                });
+                html += `</div></div>`;
+            });
+            html += `</div></div>`;
+        });
+        html += `</div>`; // variant-content
+
+        const total = variantData[currentVariant].length;
+        const half = Math.ceil(total / 2);
+        html += `<div class="variant-sidebar"><h3>Матрица ответов</h3>`;
+        html += `<div class="matrix-two-columns">`;
+        html += `<div class="matrix-col">`;
+        for (let i = 0; i < half; i++) {
+            const idx = i;
+            const q = variantData[currentVariant][idx];
+            html += `<div class="matrix-row">`;
+            html += `<span class="matrix-qnum">${idx+1}</span>`;
+            html += `<div class="matrix-options">`;
+            for (let k = 0; k < q.options.length; k++) {
+                const letter = String.fromCharCode(1040 + k);
+                const isFilled = (variantAnswers[idx] === k);
+                html += `<span class="matrix-cell ${isFilled ? 'filled' : ''}" data-q="${idx}" data-opt="${k}" onclick="selectMatrix(${idx}, ${k})">${letter}</span>`;
             }
+            const maxOptions = Math.max(...variantData[currentVariant].map(qq => qq.options.length));
+            for (let k = q.options.length; k < maxOptions; k++) {
+                html += `<span class="matrix-cell" style="visibility:hidden;"></span>`;
+            }
+            html += `</div></div>`;
         }
-        html += '</tr>';
-    }
-    html += `</tbody></table></div>`;
+        html += `</div><div class="matrix-col">`;
+        for (let i = half; i < total; i++) {
+            const idx = i;
+            const q = variantData[currentVariant][idx];
+            html += `<div class="matrix-row">`;
+            html += `<span class="matrix-qnum">${idx+1}</span>`;
+            html += `<div class="matrix-options">`;
+            for (let k = 0; k < q.options.length; k++) {
+                const letter = String.fromCharCode(1040 + k);
+                const isFilled = (variantAnswers[idx] === k);
+                html += `<span class="matrix-cell ${isFilled ? 'filled' : ''}" data-q="${idx}" data-opt="${k}" onclick="selectMatrix(${idx}, ${k})">${letter}</span>`;
+            }
+            const maxOptions = Math.max(...variantData[currentVariant].map(qq => qq.options.length));
+            for (let k = q.options.length; k < maxOptions; k++) {
+                html += `<span class="matrix-cell" style="visibility:hidden;"></span>`;
+            }
+            html += `</div></div>`;
+        }
+        html += `</div></div></div>`; // закрываем матрицу и сайдбар
+        html += `</div>`; // variant-layout
 
-    // Кнопки и результат
-    html += `<div class="submit-area"><div class="warning-msg" id="variantWarning">Выберите хотя бы один ответ</div>
-             <button class="submit-main-btn" onclick="submitVariant()">Отправить ответы</button>
-             <div class="result-block" id="variantResult"></div>
-             <div class="recommendation" id="variantRec"></div></div>
-             <div style="text-align:center;margin-top:20px;"><button class="btn" onclick="navigateTo('home')">На главную</button></div>`;
-    document.getElementById('mainContainer').innerHTML = html;
+        html += `<div class="submit-area"><div class="warning-msg" id="variantWarning">Выберите хотя бы один ответ</div>
+                 <button class="submit-main-btn" onclick="submitVariant()">Отправить ответы</button>
+                 <div class="result-block" id="variantResult"></div>
+                 <div class="recommendation" id="variantRec"></div></div>
+                 <div style="text-align:center;margin-top:20px;"><button class="btn" onclick="navigateTo('home')">На главную</button></div>`;
 
-    // Восстанавливаем ранее выбранные ответы
-    for (let q in variantAnswers) {
-        const opt = variantAnswers[q];
-        const cell = document.querySelector(`.matrix-cell[data-q="${q}"][data-opt="${opt}"]`);
-        if (cell) cell.classList.add('filled');
+        document.getElementById('mainContainer').innerHTML = html;
     }
-}
 
     function selectVariantAnswer(qi, oi) {
         if (variantSubmitted) return;
-        // Снимаем выделение с других опций этого вопроса
         document.querySelectorAll(`.matrix-cell[data-q="${qi}"]`).forEach(cell => cell.classList.remove('filled'));
-        document.querySelector(`.matrix-cell[data-q="${qi}"][data-opt="${oi}"]`).classList.add('filled');
+        const cell = document.querySelector(`.matrix-cell[data-q="${qi}"][data-opt="${oi}"]`);
+        if (cell) cell.classList.add('filled');
+        document.querySelectorAll(`.item-answer[data-qid="${qi}"]`).forEach(btn => btn.classList.remove('selected'));
+        const answerBtn = document.querySelector(`.item-answer[data-qid="${qi}"][data-opt="${oi}"]`);
+        if (answerBtn) answerBtn.classList.add('selected');
         variantAnswers[qi] = oi;
     }
+
     function selectMatrix(qi, oi) { selectVariantAnswer(qi, oi); }
 
     function submitVariant() {
@@ -735,7 +996,6 @@
             const user = variantAnswers[idx];
             const isCorrect = (user === q.correct);
             if (isCorrect) correct++;
-            // Подсветка матрицы
             for (let oi = 0; oi < q.options.length; oi++) {
                 const cell = document.querySelector(`.matrix-cell[data-q="${idx}"][data-opt="${oi}"]`);
                 if (cell) {
@@ -743,7 +1003,6 @@
                     if (user === oi && !isCorrect) cell.classList.add('incorrect-glow');
                 }
             }
-            // Подсветка блока вопроса
             const block = document.getElementById(`vq-${idx}`);
             if (block) block.classList.add(isCorrect ? 'reviewed-correct' : 'reviewed-incorrect');
         });
@@ -752,35 +1011,67 @@
         const resultDiv = document.getElementById('variantResult');
         resultDiv.innerHTML = `${correct}/${total} баллов &nbsp;—&nbsp; ${percent}%`;
         resultDiv.classList.add('show');
-        if (percent === 100) document.getElementById('variantRec').innerHTML = '<strong>Отлично!</strong>';
-        else document.getElementById('variantRec').classList.remove('show');
+
+        const recDiv = document.getElementById('variantRec');
+        if (percent === 100) {
+            recDiv.innerHTML = '<strong>Отлично!</strong>';
+        } else {
+            const wrongCats = new Set();
+            questions.forEach((q, idx) => {
+                if (variantAnswers[idx] !== q.correct) wrongCats.add(q.category);
+            });
+            const recTopics = [];
+            wrongCats.forEach(cat => {
+                const slug = categoryToTopic[cat];
+                if (slug && topicQuestions[slug] && topicQuestions[slug].length > 0) {
+                    recTopics.push({ slug, name: topicDisplayNames[slug] || cat });
+                }
+            });
+            if (recTopics.length > 0) {
+                let recHtml = '<p>Потренируйтесь решать задания по сложным темам: </p>';
+                recTopics.forEach(t => {
+                    recHtml += `<span class="rec-link" onclick="navigateTo('topic',{topic:'${t.slug}'})">${t.name}</span> `;
+                });
+                recDiv.innerHTML = recHtml;
+            } else {
+                recDiv.innerHTML = '<p>Повторите материал по темам, в которых допущены ошибки.</p>';
+            }
+        }
     }
 
-    function renderTopic() { /* аналогично, но с вертикальными ответами и кнопкой проверки */ 
+    function renderTopic() {
+        const refBtn = document.getElementById('refBtn');
+        refBtn.classList.remove('hidden');
+        refBtn.href = 'reference/' + currentTopic + '.pdf';
+
         let html = `<h2>${topicDisplayNames[currentTopic] || currentTopic}</h2>`;
         const questions = getTopicQuestions(currentTopic);
-        questions.forEach((q, idx) => {
-            html += `<div class="question-block" id="tq-${idx}">
-                        <div class="q-text">${q.text}</div>
-                        <div class="q-options">`;
-            q.options.forEach((opt, oi) => {
-                const letter = String.fromCharCode(1040 + oi);
-                html += `<div class="opt-row">
-                            <span class="opt-square" data-tq="${idx}" data-opt="${oi}" onclick="selectTopicAnswer(${idx}, ${oi})">${letter}</span>
-                            <span class="opt-text">${opt.substring(2)}</span>
-                         </div>`;
+        if (!questions.length) {
+            html += '<p>Нет заданий по этой теме.</p>';
+        } else {
+            questions.forEach((q, idx) => {
+                html += `<div class="question-block" id="tq-${idx}">
+                            <div class="q-text">${q.text}</div>
+                            <div class="q-options">`;
+                q.options.forEach((opt, oi) => {
+                    const letter = String.fromCharCode(1040 + oi);
+                    html += `<div class="opt-row">
+                                <span class="opt-square" data-tq="${idx}" data-opt="${oi}" onclick="selectTopicAnswer(${idx}, ${oi})">${letter}</span>
+                                <span class="opt-text">${opt.substring(2)}</span>
+                            </div>`;
+                });
+                html += `<button class="submit-q-btn" onclick="submitTopicAnswer(${idx})">Отправить ответ</button>
+                        <span class="q-feedback" id="tfb-${idx}"></span>
+                        </div></div>`;
             });
-            html += `<button class="submit-q-btn" onclick="submitTopicAnswer(${idx})">Отправить ответ</button>
-                     <span class="q-feedback" id="tfb-${idx}"></span>
-                    </div></div>`;
-        });
+        }
         html += `<div style="text-align:center;margin-top:20px;"><button class="btn" onclick="navigateTo('home')">На главную</button></div>`;
         document.getElementById('mainContainer').innerHTML = html;
     }
 
     function getTopicQuestions(slug) {
         if (slug === 'grammar-all') return Object.values(topicQuestions).flat();
-        if (slug === 'lexical-all') return []; // упрощённо
+        if (slug === 'lexical-all') return [];
         return topicQuestions[slug] || [];
     }
 
@@ -799,7 +1090,6 @@
         const block = document.getElementById(`tq-${qi}`);
         if (user === undefined) return;
         topicSubmitted[qi] = true;
-        // Подсветка выбранного и правильного
         document.querySelectorAll(`.opt-square[data-tq="${qi}"]`).forEach(sq => {
             const opt = parseInt(sq.dataset.opt);
             if (opt === correct) sq.classList.add('correct-highlight');
@@ -819,15 +1109,26 @@
         if (btn) btn.disabled = true;
     }
 
-    // Навигация
     function navigateTo(page, data = {}) {
         currentPage = page;
-        if (page === 'variant') { currentVariant = data.variant; variantAnswers = {}; variantSubmitted = false; renderVariant(); }
-        else if (page === 'topic') { currentTopic = data.topic; topicAnswers = {}; topicSubmitted = {}; renderTopic(); }
-        else { currentVariant = null; currentTopic = null; renderHome(); }
+        if (page === 'variant') {
+            currentVariant = data.variant;
+            variantBlocks = null;
+            variantAnswers = {};
+            variantSubmitted = false;
+            renderVariant();
+        } else if (page === 'topic') {
+            currentTopic = data.topic;
+            topicAnswers = {};
+            topicSubmitted = {};
+            renderTopic();
+        } else {
+            currentVariant = null;
+            currentTopic = null;
+            renderHome();
+        }
     }
 
-    // Инициализация
     window.onload = () => navigateTo('home');
 </script>
 </body>
