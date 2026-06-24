@@ -1131,5 +1131,158 @@
 
     window.onload = () => navigateTo('home');
 </script>
+<!-- Кнопка "Ресурсы" -->
+<button class="resources-btn" onclick="openResources()">Ресурсы</button>
+
+<!-- Модальное окно -->
+<div id="resourcesModal" class="modal-overlay" onclick="closeResourcesOutside(event)">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeResources()">&times;</span>
+        <h3>Источники справочных материалов</h3>
+        <div class="resources-links">
+            <a href="https://kipk.ru/images/LPRPAINIG/Redkina-MA-Russkiy-yazik-v-grammaticheskih-tablitcah.pdf?ysclid=mqskml2kma88094728" target="_blank" class="resource-link">Ресурс 1</a>
+            <a href="https://languageadvisor.net/wp-content/uploads/2022/06/Russian-Grammar-in-Tables.-%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B0%D1%8F-%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0-%D0%B2-%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%D1%85-%D1%83%D1%87%D0%B5%D0%B1.-%D0%BF%D0%BE%D1%81%D0%BE%D0%B1%D0%B8%D0%B5-PDFDrive-.pdf" target="_blank" class="resource-link">Ресурс 2</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Кнопка "Ресурсы" */
+    .resources-btn {
+        position: fixed;
+        bottom: 24px;
+        left: 24px;
+        background: #e8edf2;
+        color: #1a1a1a;
+        border: 1px solid #c8d2dc;
+        padding: 10px 22px;
+        border-radius: 30px;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        transition: 0.2s;
+        z-index: 1000;
+    }
+    .resources-btn:hover {
+        background: #d5dee8;
+        border-color: #9aafc4;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Затемнение (оверлей) */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+        backdrop-filter: blur(2px);
+        align-items: center;
+        justify-content: center;
+        z-index: 2000;
+    }
+    .modal-overlay.active {
+        display: flex;
+    }
+
+    /* Само модальное окно */
+    .modal-content {
+        background: #ffffff;
+        max-width: 520px;
+        width: 90%;
+        padding: 30px 28px 34px;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        position: relative;
+        font-family: 'Times New Roman', Times, serif;
+        animation: fadeIn 0.25s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 14px;
+        right: 18px;
+        font-size: 1.8rem;
+        line-height: 1;
+        cursor: pointer;
+        color: #888;
+        transition: 0.15s;
+    }
+    .modal-close:hover {
+        color: #333;
+    }
+
+    .modal-content h3 {
+        margin-top: 0;
+        margin-bottom: 22px;
+        font-size: 1.2rem;
+        color: #3a7cc3;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .resources-links {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        align-items: center;
+    }
+
+    .resource-link {
+        display: inline-block;
+        background: #f0f5fa;
+        border: 1px solid #c8d5e2;
+        padding: 10px 28px;
+        border-radius: 40px;
+        color: #2c5f8a;
+        font-weight: 500;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: 0.18s;
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    .resource-link:hover {
+        background: #e2ebf3;
+        border-color: #8aaac9;
+        color: #1a4166;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .resource-link:active {
+        background: #d0dce8;
+    }
+</style>
+
+<script>
+    function openResources() {
+        document.getElementById('resourcesModal').classList.add('active');
+        document.body.style.overflow = 'hidden'; // запрещаем прокрутку фона
+    }
+    function closeResources() {
+        document.getElementById('resourcesModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    // Закрытие при клике на фон (оверлей)
+    function closeResourcesOutside(event) {
+        if (event.target === event.currentTarget) {
+            closeResources();
+        }
+    }
+    // Закрытие по клавише Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeResources();
+        }
+    });
+</script>
 </body>
 </html>
