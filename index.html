@@ -386,6 +386,24 @@
             margin-top: 12px;
             font-size: 0.9rem;
         }
+        @media (max-width: 600px) {
+            header {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 6px;
+                padding: 10px;
+            }
+            .ref-btn {
+                position: static;          /* отключаем абсолютное позиционирование */
+                order: 2;                 /* чтобы кнопка была после логотипа */
+                margin: 0 auto;
+            }
+            .logo {
+                order: 1;
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
